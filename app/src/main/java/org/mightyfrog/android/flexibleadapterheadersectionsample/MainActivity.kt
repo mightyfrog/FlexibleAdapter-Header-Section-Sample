@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.RecyclerView
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.common.FlexibleItemDecoration
-import eu.davidea.flexibleadapter.common.SmoothScrollLinearLayoutManager
+import eu.davidea.flexibleadapter.common.SmoothScrollStaggeredLayoutManager
 import eu.davidea.flexibleadapter.items.AbstractFlexibleItem
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -15,6 +15,10 @@ import kotlinx.android.synthetic.main.activity_main.*
  * @author Shigehiro Soejima
  */
 class MainActivity : AppCompatActivity() {
+
+    companion object {
+        const val spanCount = 3
+    }
 
     private val sampleData = mutableListOf<AbstractFlexibleItem<*>>().apply {
         val canada = HeaderItem("Canada")
@@ -65,8 +69,8 @@ class MainActivity : AppCompatActivity() {
             adapter = FlexibleAdapter<AbstractFlexibleItem<*>>(sampleData, this)
                     .setDisplayHeadersAtStartUp(true)
                     .setStickyHeaders(true)
-            layoutManager = SmoothScrollLinearLayoutManager(context)
-            addItemDecoration(FlexibleItemDecoration(context).addItemViewType(R.layout.section, 0, 1, 0, 1))
+            layoutManager = SmoothScrollStaggeredLayoutManager(context, spanCount)
+            addItemDecoration(FlexibleItemDecoration(context).addItemViewType(R.layout.section, 1, 1, 1, 1))
             setHasFixedSize(true)
         }
     }

@@ -24,5 +24,9 @@ data class HeaderItem(private val title: String) : AbstractHeaderItem<HeaderItem
 
         var title: TextView = view.findViewById(R.id.title)
         var subtitle: TextView = view.findViewById(R.id.subtitle)
+
+        init {
+            setFullSpan(true)
+        }
     }
 }
