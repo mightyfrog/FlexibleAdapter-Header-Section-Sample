@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">FlexibleAdapter Header Section Sample</string>
+    <string name="header_subtitle">%1$d sections</string>
+</resources>
