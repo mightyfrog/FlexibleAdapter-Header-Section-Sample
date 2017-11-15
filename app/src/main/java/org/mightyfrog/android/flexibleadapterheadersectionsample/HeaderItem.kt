@@ -13,6 +13,8 @@ data class HeaderItem(private val title: String) : AbstractHeaderItem<HeaderItem
 
     override fun getLayoutRes() = R.layout.header
 
+    override fun getSpanSize(spanCount: Int, position: Int) = spanCount
+
     override fun createViewHolder(view: View, adapter: FlexibleAdapter<*>): ViewHolder = ViewHolder(view, adapter)
 
     override fun bindViewHolder(adapter: FlexibleAdapter<*>, holder: ViewHolder, position: Int, payloads: List<*>) {

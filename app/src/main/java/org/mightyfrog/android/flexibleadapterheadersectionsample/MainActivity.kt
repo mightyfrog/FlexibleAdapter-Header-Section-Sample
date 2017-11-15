@@ -2,10 +2,11 @@ package org.mightyfrog.android.flexibleadapterheadersectionsample
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.common.FlexibleItemDecoration
-import eu.davidea.flexibleadapter.common.SmoothScrollLinearLayoutManager
+import eu.davidea.flexibleadapter.common.SmoothScrollGridLayoutManager
 import eu.davidea.flexibleadapter.items.AbstractFlexibleItem
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -15,6 +16,10 @@ import kotlinx.android.synthetic.main.activity_main.*
  * @author Shigehiro Soejima
  */
 class MainActivity : AppCompatActivity() {
+
+    companion object {
+        const val spanCount = 2
+    }
 
     private val sampleData = mutableListOf<AbstractFlexibleItem<*>>().apply {
         val canada = HeaderItem("Canada")
@@ -65,8 +70,12 @@ class MainActivity : AppCompatActivity() {
             adapter = FlexibleAdapter<AbstractFlexibleItem<*>>(sampleData, this)
                     .setDisplayHeadersAtStartUp(true)
                     .setStickyHeaders(true)
-            layoutManager = SmoothScrollLinearLayoutManager(context)
-            addItemDecoration(FlexibleItemDecoration(context).addItemViewType(R.layout.section, 0, 1, 0, 1))
+            layoutManager = SmoothScrollGridLayoutManager(context, spanCount).apply {
+                spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
+                    override fun getSpanSize(position: Int) = (adapter as FlexibleAdapter<*>).getItem(position)!!.getSpanSize(spanCount, position)
+                }
+            }
+            addItemDecoration(FlexibleItemDecoration(context).addItemViewType(R.layout.section, 1, 1, 1, 1))
             setHasFixedSize(true)
         }
     }
