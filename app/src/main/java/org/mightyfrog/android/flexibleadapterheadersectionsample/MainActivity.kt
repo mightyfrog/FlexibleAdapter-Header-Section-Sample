@@ -18,7 +18,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
 
     companion object {
-        const val spanCount = 2
+        const val spanCount = 6
     }
 
     private val sampleData = mutableListOf<AbstractFlexibleItem<*>>().apply {

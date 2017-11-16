@@ -12,7 +12,13 @@ import eu.davidea.viewholders.FlexibleViewHolder
  */
 data class SectionItem(private val title: String, private val headerItem: HeaderItem) : AbstractFlexibleItem<SectionItem.ViewHolder>(), ISectionable<SectionItem.ViewHolder, HeaderItem> {
 
+    companion object {
+        val us = HeaderItem("US")
+    }
+
     override fun getLayoutRes(): Int = R.layout.section
+
+    override fun getSpanSize(spanCount: Int, position: Int) = if (headerItem == us) 2 else 3
 
     override fun getHeader(): HeaderItem = headerItem
 
