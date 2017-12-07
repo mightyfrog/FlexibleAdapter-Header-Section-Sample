@@ -3,7 +3,6 @@ package org.mightyfrog.android.flexibleadapterheadersectionsample
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.RecyclerView
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.common.FlexibleItemDecoration
 import eu.davidea.flexibleadapter.common.SmoothScrollGridLayoutManager
@@ -66,7 +65,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
-        findViewById<RecyclerView>(R.id.recycler_view).apply {
+        recycler_view.apply {
             adapter = FlexibleAdapter<AbstractFlexibleItem<*>>(sampleData, this)
                     .setDisplayHeadersAtStartUp(true)
                     .setStickyHeaders(true)
