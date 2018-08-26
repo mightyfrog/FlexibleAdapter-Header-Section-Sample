@@ -60,7 +60,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
-        recycler_view.apply {
+        recyclerView.apply {
             adapter = FlexibleAdapter<AbstractFlexibleItem<*>>(sampleData, this)
                     .setDisplayHeadersAtStartUp(true)
                     .setStickyHeaders(true)

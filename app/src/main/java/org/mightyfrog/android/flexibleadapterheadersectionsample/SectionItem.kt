@@ -1,9 +1,11 @@
 package org.mightyfrog.android.flexibleadapterheadersectionsample
 
+import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.TextView
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.items.AbstractFlexibleItem
+import eu.davidea.flexibleadapter.items.IFlexible
 import eu.davidea.flexibleadapter.items.ISectionable
 import eu.davidea.viewholders.FlexibleViewHolder
 
@@ -20,14 +22,16 @@ data class SectionItem(private val title: String, private val headerItem: Header
         // no-op, passed as a constructor argument
     }
 
-    override fun createViewHolder(view: View, adapter: FlexibleAdapter<*>): ViewHolder = ViewHolder(view, adapter)
+    override fun createViewHolder(view: View?, adapter: FlexibleAdapter<IFlexible<RecyclerView.ViewHolder>>?): ViewHolder = ViewHolder(view, adapter)
 
-    override fun bindViewHolder(adapter: FlexibleAdapter<*>, holder: ViewHolder, position: Int, payloads: List<*>) {
-        holder.title.text = title
+    override fun bindViewHolder(adapter: FlexibleAdapter<IFlexible<RecyclerView.ViewHolder>>?, holder: ViewHolder?, position: Int, payloads: MutableList<Any>?) {
+        holder?.let {
+            it.title.text = title
+        }
     }
 
-    class ViewHolder(view: View, adapter: FlexibleAdapter<*>) : FlexibleViewHolder(view, adapter) {
+    class ViewHolder(view: View?, adapter: FlexibleAdapter<*>?) : FlexibleViewHolder(view, adapter) {
 
-        var title: TextView = view.findViewById(R.id.title)
+        var title: TextView = view?.findViewById(R.id.title)!!
     }
 }
